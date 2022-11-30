@@ -23,6 +23,10 @@ public class TestController {
         return testService.save(testEntity);
     }
 
+    @GetMapping("${request.mapping}")
+    public List<TestEntity> showFunTest() {return testService.get();
+    }
+
     @GetMapping
     public List<TestEntity> showTest() {
         return testService.get();
