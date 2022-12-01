@@ -78,9 +78,18 @@ public class DeadlockDemo {
          * have to be next to each other to be nested.
          */
         private void transfer(Account fromAccount, Account toAccount, int transferAmount) throws OverdrawnException {
-
-            synchronized (fromAccount) {
-                synchronized (toAccount) {
+            Account firstLock,secondLock;
+            if(fromAccount.getNumber()>toAccount.getNumber()){
+                firstLock = toAccount;
+                secondLock = fromAccount;
+            }else{
+                firstLock = fromAccount;
+                secondLock = toAccount;
+            }
+            synchronized (firstLock) {
+                System.out.println("first lock account: "+firstLock.getNumber());
+                synchronized (secondLock) {
+                    System.out.println("second lock account: "+secondLock.getNumber());
                     fromAccount.withdraw(transferAmount);
                     toAccount.deposit(transferAmount);
                 }
