@@ -30,7 +30,13 @@ public class DeadlockDemo {
     void run() {
 
         for (int i = 0; i < NUM_THREADS; i++) {
-            new BadTransferOperation(i).start();
+            BadTransferOperation badTransferOperation=new BadTransferOperation(i);
+            badTransferOperation.start();
+            try {
+                badTransferOperation.join();
+            }catch (Exception e){
+
+            }
         }
     }
 
