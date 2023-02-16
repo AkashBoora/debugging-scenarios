@@ -30,6 +30,9 @@ public class LightningCartIntegrationTest {
     var item1 = createItem("Book 1", 30, 1);
     var item2 = createItem("Book 2", 30, 2);
 
+    fItemCatalogue.addItemToCatalogue(item1);
+    fItemCatalogue.addItemToCatalogue(item2);
+
     //Add items to customer cart
     fCartService.addItemToCart(CUSTOMER_1, item1);
     fCartService.addItemToCart(CUSTOMER_1, item2);

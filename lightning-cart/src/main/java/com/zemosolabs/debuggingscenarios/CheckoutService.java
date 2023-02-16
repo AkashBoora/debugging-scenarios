@@ -21,7 +21,7 @@ public class CheckoutService implements ICheckoutService{
   }
 
   @Override
-  public void checkout(final UUID customerId) {
+  public synchronized void checkout(final UUID customerId) {
     Preconditions.checkNotNull(customerId, "CustomerId");
     var cart = fCartService.getCart(customerId);
     Preconditions.checkState(
